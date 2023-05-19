@@ -42,10 +42,11 @@ const Nav = () => {
             </Link>
             <button
               type="button"
-              onClick={() => {
-                signOut();
-                router.push("/");
-              }}
+              onClick={() =>
+                signOut({
+                  callbackUrl: `${window.location.origin}`,
+                })
+              }
               className="outline_btn blue_gradient"
             >
               Sign Out
@@ -68,7 +69,11 @@ const Nav = () => {
                 <button
                   type="button"
                   key={provider.id}
-                  onClick={() => signIn(provider.id)}
+                  onClick={() =>
+                    signIn(provider.id, {
+                      callbackUrl: `${window.location.origin}`,
+                    })
+                  }
                   className="outline_btn blue_gradient"
                 >
                   Sign In
@@ -109,11 +114,11 @@ const Nav = () => {
                 </Link>
                 <button
                   type="button"
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    signOut();
-                    router.push("/");
-                  }}
+                  onClick={() =>
+                    signOut({
+                      callbackUrl: `${window.location.origin}`,
+                    })
+                  }
                   className="mt-5 w-full outline_btn blue_gradient"
                 >
                   Sign Out
@@ -128,7 +133,11 @@ const Nav = () => {
                 <button
                   type="button"
                   key={provider.id}
-                  onClick={() => signIn(provider.id)}
+                  onClick={() =>
+                    signIn(provider.id, {
+                      callbackUrl: `${window.location.origin}`,
+                    })
+                  }
                   className="outline_btn blue_gradient"
                 >
                   Sign In
