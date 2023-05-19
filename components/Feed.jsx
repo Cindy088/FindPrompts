@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
 import Loader from "./Loader";
+import { useRouter } from "next/navigation";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -24,6 +25,8 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -73,15 +76,66 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
+  const handleButtonClick = (buttonName) => {
+    setSearchText(buttonName);
+
+    const searchResult = filterPrompts(buttonName);
+    setSearchedResults(searchResult);
+  };
+
+  const handleClear = () => {
+    setSearchText("");
+  };
+
   return (
     <section className="feed">
       <div className="w-full flex max-sm:hidden flex-center flex-row mb-10 gap-2 ">
-        <button className="outline_btn blue_gradient">React</button>
-        <button className="outline_btn blue_gradient">Node</button>
-        <button className="outline_btn blue_gradient">SQL</button>
-        <button className="outline_btn blue_gradient">CV</button>
-        <button className="outline_btn blue_gradient">Tech</button>
-        <button className="outline_btn blue_gradient ">More+</button>
+        <button
+          className="outline_btn blue_gradient"
+          onClick={() => {
+            handleButtonClick && handleButtonClick("React");
+          }}
+        >
+          React
+        </button>
+        <button
+          className="outline_btn blue_gradient"
+          onClick={() => {
+            handleButtonClick && handleButtonClick("Node");
+          }}
+        >
+          Node
+        </button>
+        <button
+          className="outline_btn blue_gradient"
+          onClick={() => {
+            handleButtonClick && handleButtonClick("SQL");
+          }}
+        >
+          SQL
+        </button>
+        <button
+          className="outline_btn blue_gradient"
+          onClick={() => {
+            handleButtonClick && handleButtonClick("CV");
+          }}
+        >
+          CV
+        </button>
+        <button
+          className="outline_btn blue_gradient"
+          onClick={() => {
+            handleButtonClick && handleButtonClick("Tech");
+          }}
+        >
+          Tech
+        </button>
+        <button
+          className="outline_btn blue_gradient"
+          onClick={() => router.push("/create-prompt")}
+        >
+          More+
+        </button>
       </div>
 
       <form className="relative flex-center w-full">
@@ -95,8 +149,17 @@ const Feed = () => {
         />
       </form>
       <div className="w-full flex-center flex-row mt-5 gap-5">
-        <button className="outline_btn blue_gradient">Search</button>
-        <button className="outline_btn blue_gradient">Clear all</button>
+        <button className="outline_btn blue_gradient" onClick={handleClear}>
+          Clear all
+        </button>
+        <button
+          className="outline_btn blue_gradient"
+          onClick={() => {
+            router.push("/create-prompt");
+          }}
+        >
+          Create
+        </button>
       </div>
 
       {/* All Prompts */}
