@@ -132,7 +132,7 @@ const Feed = () => {
         </button>
         <button
           className="outline_btn blue_gradient"
-          onClick={() => router.push("/create-prompt")}
+          // onClick={() => router.push("/create-prompt")}
         >
           More+
         </button>
@@ -155,7 +155,7 @@ const Feed = () => {
         <button
           className="outline_btn blue_gradient"
           onClick={() => {
-            router.push("/create-prompt");
+            // router.push("/create-prompt");
           }}
         >
           Create
